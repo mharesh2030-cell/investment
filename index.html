@@ -1,750 +1,718 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Investment & Impact Profile — جمعية سندكم</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Tajawal:wght@300;400;500;700;800&display=swap');
-
-:root {
-  --navy: #0D2240;
-  --teal: #1B8A7A;
-  --gold: #C9A227;
-  --light-teal: #E8F5F3;
-  --light-blue: #EAF1F8;
-  --white: #FFFFFF;
-  --gray: #F4F7FB;
-  --text: #1A2435;
-  --muted: #6B7A8D;
-  --border: #D1DDE8;
-}
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-body {
-  font-family: 'Cairo', 'Tajawal', sans-serif;
-  background: #F0F4F8;
-  color: var(--text);
-  direction: rtl;
-}
-
-/* PRINT STYLES */
-@media print {
-  body { background: white; }
-  .page { box-shadow: none; margin: 0; border-radius: 0; page-break-after: always; }
-  .page:last-child { page-break-after: avoid; }
-  .no-print { display: none; }
-  @page { margin: 0; size: A4; }
-}
-
-/* PRINT BUTTON */
-.print-bar {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 999;
-  background: var(--navy); padding: 10px 24px;
-  display: flex; align-items: center; justify-content: space-between;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.3);
-}
-.print-bar span { color: #fff; font-size: 14px; font-family: 'Cairo', sans-serif; }
-.btn-print {
-  background: var(--gold); color: var(--navy); border: none;
-  padding: 8px 24px; border-radius: 6px; font-family: 'Cairo', sans-serif;
-  font-weight: 700; font-size: 14px; cursor: pointer; transition: 0.2s;
-}
-.btn-print:hover { background: #E8B83A; }
-
-.wrapper { padding: 56px 20px 40px; max-width: 960px; margin: 0 auto; }
-
-/* PAGE */
-.page {
-  background: white;
-  border-radius: 4px;
-  box-shadow: 0 4px 24px rgba(13,34,64,0.10);
-  margin-bottom: 24px;
-  overflow: hidden;
-  position: relative;
-}
-
-/* COVER PAGE */
-.cover {
-  background: linear-gradient(160deg, var(--navy) 0%, #1A3A5C 60%, #0A1A30 100%);
-  min-height: 700px;
-  display: flex; flex-direction: column;
-  justify-content: center; align-items: center;
-  text-align: center; padding: 60px 48px;
-  position: relative;
-}
-.cover::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: repeating-linear-gradient(45deg, rgba(201,162,39,0.03) 0px, rgba(201,162,39,0.03) 1px, transparent 1px, transparent 40px);
-}
-.cover-logo-area { margin-bottom: 32px; }
-.org-name-en {
-  font-size: 52px; font-weight: 900; color: var(--gold); letter-spacing: 6px;
-  text-transform: uppercase; font-family: 'Cairo', sans-serif;
-}
-.org-name-ar {
-  font-size: 24px; font-weight: 600; color: rgba(255,255,255,0.85);
-  margin-top: 8px;
-}
-.cover-divider {
-  width: 80px; height: 3px;
-  background: linear-gradient(90deg, var(--gold), var(--teal));
-  margin: 28px auto; border-radius: 2px;
-}
-.cover-title-en {
-  font-size: 38px; font-weight: 900; color: #fff; line-height: 1.2;
-}
-.cover-title-ar {
-  font-size: 28px; font-weight: 700; color: var(--teal); margin-top: 10px;
-}
-.cover-sub {
-  font-size: 15px; color: rgba(255,255,255,0.6); margin-top: 20px;
-}
-.cover-stats {
-  display: grid; grid-template-columns: repeat(3,1fr);
-  gap: 16px; margin-top: 40px; width: 100%;
-}
-.cover-stat {
-  background: rgba(255,255,255,0.07);
-  border: 1px solid rgba(201,162,39,0.3);
-  border-radius: 8px; padding: 18px 12px;
-}
-.cover-stat-val { font-size: 36px; font-weight: 900; color: var(--gold); }
-.cover-stat-lbl { font-size: 13px; color: rgba(255,255,255,0.7); margin-top: 4px; }
-.cover-footer {
-  margin-top: 36px;
-  font-size: 12px; color: rgba(255,255,255,0.4);
-  font-style: italic;
-}
-
-/* SECTION HEADER */
-.section-header {
-  background: var(--navy);
-  padding: 18px 36px;
-  display: flex; align-items: center; gap: 14px;
-}
-.section-num {
-  background: var(--gold); color: var(--navy);
-  width: 40px; height: 40px; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-weight: 900; font-size: 16px; flex-shrink: 0;
-}
-.section-title-ar { font-size: 20px; font-weight: 700; color: #fff; }
-.section-title-en { font-size: 13px; color: rgba(255,255,255,0.5); margin-top: 2px; }
-
-/* CONTENT */
-.content { padding: 36px 40px; }
-
-/* KPI GRID */
-.kpi-grid { display: grid; gap: 12px; margin: 20px 0; }
-.kpi-grid-4 { grid-template-columns: repeat(4,1fr); }
-.kpi-grid-3 { grid-template-columns: repeat(3,1fr); }
-.kpi-grid-2 { grid-template-columns: repeat(2,1fr); }
-.kpi-box {
-  background: var(--light-teal);
-  border: 1px solid rgba(27,138,122,0.25);
-  border-radius: 10px; padding: 20px 14px; text-align: center;
-}
-.kpi-val { font-size: 38px; font-weight: 900; color: var(--navy); line-height: 1; }
-.kpi-lbl { font-size: 12px; color: var(--muted); margin-top: 6px; font-weight: 600; }
-.kpi-sub { font-size: 11px; color: var(--teal); margin-top: 3px; }
-
-/* 2-COL */
-.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin: 20px 0; }
-.col-box {
-  background: var(--gray);
-  border-radius: 8px; padding: 20px;
-  border-right: 4px solid var(--teal);
-}
-.col-box.accent { border-right-color: var(--gold); }
-.col-box.navy { border-right-color: var(--navy); }
-
-/* HEADINGS */
-h2 { font-size: 20px; font-weight: 700; color: var(--navy); margin-bottom: 12px; padding-bottom: 8px; border-bottom: 2px solid var(--teal); }
-h3 { font-size: 16px; font-weight: 700; color: var(--teal); margin-bottom: 8px; }
-p { font-size: 14px; line-height: 1.8; color: var(--text); margin-bottom: 10px; }
-
-/* BULLETS */
-ul { list-style: none; padding: 0; }
-ul li { font-size: 13px; line-height: 1.7; color: var(--text); padding: 4px 0 4px 0; display: flex; gap: 8px; align-items: flex-start; }
-ul li::before { content: '●'; color: var(--teal); font-size: 10px; margin-top: 4px; flex-shrink: 0; }
-
-/* TABLES */
-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 13px; }
-thead tr { background: var(--navy); }
-thead th { color: #fff; padding: 11px 14px; font-weight: 600; text-align: right; font-size: 13px; }
-tbody tr:nth-child(even) { background: var(--gray); }
-tbody tr:nth-child(odd) { background: #fff; }
-tbody td { padding: 10px 14px; color: var(--text); border-bottom: 1px solid var(--border); vertical-align: top; }
-tbody tr:hover { background: var(--light-teal); }
-
-/* BEFORE/AFTER */
-.before-after { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin: 20px 0; border-radius: 10px; overflow: hidden; border: 1px solid var(--border); }
-.before { background: #FFF5F5; padding: 20px; }
-.after { background: var(--light-teal); padding: 20px; border-right: 4px solid var(--teal); }
-.ba-title { font-size: 15px; font-weight: 700; text-align: center; margin-bottom: 12px; padding-bottom: 8px; }
-.before .ba-title { color: #C0392B; border-bottom: 2px solid #C0392B; }
-.after .ba-title { color: var(--teal); border-bottom: 2px solid var(--teal); }
-
-/* OPPORTUNITY BOX */
-.opp-box {
-  border-radius: 10px; overflow: hidden; margin: 16px 0;
-  border: 1px solid var(--border);
-}
-.opp-header { padding: 14px 20px; font-size: 16px; font-weight: 700; }
-.opp-header.gold { background: var(--gold); color: var(--navy); }
-.opp-header.teal { background: var(--teal); color: #fff; }
-.opp-header.navy { background: var(--navy); color: #fff; }
-.opp-body table { margin: 0; }
-
-/* ROADMAP */
-.roadmap-item { display: grid; grid-template-columns: 90px 1fr; gap: 0; margin: 14px 0; border-radius: 10px; overflow: hidden; border: 1px solid var(--border); }
-.rm-phase { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px 10px; text-align: center; }
-.rm-phase.p1 { background: var(--gold); }
-.rm-phase.p2 { background: var(--teal); }
-.rm-phase.p3 { background: var(--navy); }
-.rm-phase-num { font-size: 36px; font-weight: 900; }
-.rm-phase.p1 .rm-phase-num, .rm-phase.p1 .rm-yr { color: var(--navy); }
-.rm-phase.p2 .rm-phase-num, .rm-phase.p2 .rm-yr,
-.rm-phase.p3 .rm-phase-num, .rm-phase.p3 .rm-yr { color: #fff; }
-.rm-yr { font-size: 13px; font-weight: 600; margin-top: 4px; }
-.rm-content { padding: 20px 24px; background: var(--gray); }
-.rm-content h3 { margin-bottom: 10px; }
-.rm-kpi { margin-top: 10px; font-size: 12px; font-weight: 700; color: var(--teal); background: rgba(27,138,122,0.08); padding: 6px 10px; border-radius: 4px; }
-
-/* CONTACT BOX */
-.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0; }
-.contact-card {
-  border-radius: 10px; padding: 24px;
-  text-align: center;
-}
-.contact-card.teal { background: var(--light-teal); border: 2px solid rgba(27,138,122,0.3); }
-.contact-card.navy { background: var(--light-blue); border: 2px solid rgba(13,34,64,0.2); }
-.contact-card-name { font-size: 17px; font-weight: 700; color: var(--navy); margin-bottom: 12px; }
-.contact-item { font-size: 13px; color: var(--muted); margin: 5px 0; }
-.contact-item a { color: var(--teal); text-decoration: none; }
-
-/* CTA BOX */
-.cta-box {
-  background: linear-gradient(135deg, var(--navy) 0%, #1A3A5C 100%);
-  border-radius: 10px; padding: 36px; text-align: center; margin: 20px 0;
-}
-.cta-title { font-size: 32px; font-weight: 900; color: var(--gold); margin-bottom: 12px; }
-.cta-sub { font-size: 16px; color: rgba(255,255,255,0.85); line-height: 1.7; }
-.cta-body { font-size: 14px; color: rgba(255,255,255,0.6); margin-top: 10px; }
-
-/* PARTNER TYPES */
-.partner-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin: 16px 0; }
-.partner-card {
-  border-radius: 8px; padding: 16px; text-align: center;
-  background: var(--gray); border-top: 4px solid var(--teal);
-}
-.partner-card.gold { border-top-color: var(--gold); }
-.partner-card h4 { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
-.partner-card p { font-size: 12px; color: var(--muted); margin: 0; }
-
-/* SROI BOXES */
-.sroi-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin: 16px 0; }
-.sroi-box { background: var(--light-teal); border: 1px solid rgba(27,138,122,0.25); border-radius: 10px; padding: 20px; text-align: center; }
-.sroi-val { font-size: 44px; font-weight: 900; color: var(--navy); }
-.sroi-lbl { font-size: 13px; font-weight: 600; color: var(--text); margin-top: 6px; }
-.sroi-sub { font-size: 11px; color: var(--muted); margin-top: 4px; }
-
-/* ALIGNMENT TABLE */
-.v2030-row { display: grid; grid-template-columns: 2fr 2fr 1.5fr; border-bottom: 1px solid var(--border); }
-.v2030-row:first-child { background: var(--navy); border-radius: 8px 8px 0 0; }
-.v2030-row:first-child div { color: #fff; font-weight: 700; }
-.v2030-row:nth-child(even) { background: var(--gray); }
-.v2030-row div { padding: 12px 16px; font-size: 13px; }
-
-.badge { display: inline-block; background: var(--teal); color: #fff; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; margin-left: 6px; }
-.badge.gold { background: var(--gold); color: var(--navy); }
-
-footer-note { font-size: 11px; color: var(--muted); text-align: center; display: block; margin-top: 20px; padding-top: 14px; border-top: 1px solid var(--border); font-style: italic; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تقرير تحليلي لمجلس الإدارة: كفاءة الأداء التشغيلي ومعدلات الإنفاق</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #475569;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Navigation */
+        nav {
+            background: #064E3B;
+            padding: 20px 40px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 20px;
+            z-index: 100;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: background 0.3s;
+            font-size: 14px;
+            font-weight: 400;
+        }
+        
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Section Styles */
+        section {
+            background: white;
+            border-radius: 8px;
+            padding: 50px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            scroll-margin-top: 100px;
+        }
+        
+        /* Title Slide */
+        .title-section {
+            background: linear-gradient(135deg, #064E3B 0%, #0f766e 100%);
+            color: white;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 500px;
+        }
+        
+        .title-section h1 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .title-section h2 {
+            font-size: 32px;
+            font-weight: 300;
+            margin-bottom: 30px;
+        }
+        
+        .title-section .info {
+            font-size: 18px;
+            font-weight: 300;
+            margin: 8px 0;
+        }
+        
+        /* Headings */
+        h2 {
+            color: #064E3B;
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            border-bottom: 3px solid #D97706;
+            padding-bottom: 15px;
+        }
+        
+        h3 {
+            color: #064E3B;
+            font-size: 24px;
+            font-weight: 800;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        
+        /* Content */
+        p {
+            font-size: 18px;
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+        
+        .bullet-list {
+            margin: 20px 0 20px 30px;
+        }
+        
+        .bullet-list li {
+            font-size: 18px;
+            margin-bottom: 12px;
+            list-style-position: inside;
+            color: #475569;
+        }
+        
+        .bullet-list li:before {
+            content: "• ";
+            color: #D97706;
+            font-weight: 800;
+            margin-right: 10px;
+        }
+        
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            font-size: 16px;
+        }
+        
+        table thead {
+            background: #064E3B;
+            color: white;
+        }
+        
+        table th {
+            padding: 15px;
+            text-align: right;
+            font-weight: 800;
+            border: 1px solid #e2e8f0;
+        }
+        
+        table td {
+            padding: 12px 15px;
+            border: 1px solid #e2e8f0;
+            text-align: right;
+        }
+        
+        table tbody tr:nth-child(even) {
+            background: #f8fafc;
+        }
+        
+        table tbody tr:hover {
+            background: #f1f5f9;
+        }
+        
+        .negative {
+            color: #D97706;
+            font-weight: 800;
+        }
+        
+        .positive {
+            color: #10B981;
+            font-weight: 800;
+        }
+        
+        /* Charts */
+        .chart-container {
+            position: relative;
+            height: 450px;
+            margin: 40px 0;
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        /* Recommendations Grid */
+        .recommendations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .recommendation-card {
+            background: #f8fafc;
+            border-left: 4px solid #D97706;
+            padding: 25px;
+            border-radius: 4px;
+        }
+        
+        .recommendation-card h4 {
+            color: #064E3B;
+            font-size: 18px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .recommendation-card .number {
+            background: #10B981;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 10px;
+            font-weight: 800;
+            font-size: 14px;
+        }
+        
+        .recommendation-card p {
+            font-size: 16px;
+            color: #475569;
+        }
+        
+        /* Analysis Grid */
+        .analysis-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .analysis-block {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 20px;
+            border-radius: 4px;
+        }
+        
+        .analysis-block .period {
+            color: #D97706;
+            font-weight: 800;
+            font-size: 16px;
+            margin-bottom: 12px;
+            display: block;
+        }
+        
+        .analysis-block p {
+            font-size: 15px;
+            line-height: 1.6;
+        }
+        
+        .highlight {
+            color: #064E3B;
+            font-weight: 800;
+        }
+        
+        /* Footer */
+        footer {
+            background: #064E3B;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            border-radius: 8px;
+            margin-top: 50px;
+        }
+        
+        footer p {
+            color: white;
+            margin: 5px 0;
+        }
+        
+        /* Print Styles */
+        @media print {
+            nav {
+                display: none;
+            }
+            
+            section {
+                page-break-inside: avoid;
+                box-shadow: none;
+                border: 1px solid #e2e8f0;
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            section {
+                padding: 30px 20px;
+            }
+            
+            h2 {
+                font-size: 28px;
+            }
+            
+            .title-section h1 {
+                font-size: 32px;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .recommendations-grid,
+            .analysis-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-
-<div class="print-bar no-print">
-  <span>Investment & Impact Profile — جمعية سندكم | للطباعة اضغط Ctrl+P</span>
-  <button class="btn-print" onclick="window.print()">🖨 طباعة / حفظ PDF</button>
-</div>
-
-<div class="wrapper">
-
-<!-- ════════════════════════════════════════ COVER ════════════════ -->
-<div class="page">
-  <div class="cover">
-    <div class="cover-logo-area">
-      <div class="org-name-en">SANADCOM</div>
-      <div class="org-name-ar">جمعية سندكم لرعاية الأطفال ذوي الظروف الخاصة</div>
-    </div>
-    <div class="cover-divider"></div>
-    <div class="cover-title-en">Investment &amp; Impact Profile</div>
-    <div class="cover-title-ar">ملف الاستثمار والأثر الاجتماعي</div>
-    <div class="cover-sub">منطقة مكة المكرمة &nbsp;|&nbsp; المملكة العربية السعودية &nbsp;|&nbsp; 2025 – 2027</div>
-    <div class="cover-stats">
-      <div class="cover-stat"><div class="cover-stat-val">+75</div><div class="cover-stat-lbl">أسرة مستفيدة</div></div>
-      <div class="cover-stat"><div class="cover-stat-val">5</div><div class="cover-stat-lbl">برامج متكاملة</div></div>
-      <div class="cover-stat"><div class="cover-stat-val">14</div><div class="cover-stat-lbl">محافظة في النطاق</div></div>
-    </div>
-    <div class="cover-footer">Prepared by: ARKAN Sustainable Investment — أركان الاستدامة للاستثمار</div>
-  </div>
-</div>
-
-<!-- ════════════════════════════════════════ SEC 1: EXEC SUMMARY ══ -->
-<div class="page">
-  <div class="section-header">
-    <div class="section-num">01</div>
-    <div><div class="section-title-ar">الملخص التنفيذي</div><div class="section-title-en">Executive Summary</div></div>
-  </div>
-  <div class="content">
-    <p>جمعية سندكم لرعاية الأطفال ذوي الظروف الخاصة جمعية خيرية متخصصة مرخّصة من المركز الوطني لتنمية القطاع غير الربحي (رقم الترخيص 5510، تاريخ 1/5/1445هـ)، تحت إشراف وزارة الموارد البشرية والتنمية الاجتماعية. تُعنى برعاية الأطفال المحتضنين مجهولي النسب وأسرهم الحاضنة بمنطقة مكة المكرمة، من لحظة الاحتضان وحتى بلوغ الطفل واستقلاله.</p>
+    <nav>
+        <ul>
+            <li><a href="#title">الرئيسية</a></li>
+            <li><a href="#introduction">المقدمة</a></li>
+            <li><a href="#methodology">المنهجية</a></li>
+            <li><a href="#financial-overview">الأداء المالي</a></li>
+            <li><a href="#revenue-expenses">المصروفات والإيرادات</a></li>
+            <li><a href="#expense-distribution">توزيع المصروفات</a></li>
+            <li><a href="#efficiency">مؤشرات الكفاءة</a></li>
+            <li><a href="#analysis">التحليل</a></li>
+            <li><a href="#recommendations">التوصيات</a></li>
+            <li><a href="#conclusion">الخلاصة</a></li>
+        </ul>
+    </nav>
     
-    <div class="kpi-grid kpi-grid-4">
-      <div class="kpi-box"><div class="kpi-val">+75</div><div class="kpi-lbl">أسرة مستفيدة</div><div class="kpi-sub">في منطقة مكة المكرمة</div></div>
-      <div class="kpi-box"><div class="kpi-val">+75</div><div class="kpi-lbl">طفل محتضن</div><div class="kpi-sub">الفئة المستهدفة المباشرة</div></div>
-      <div class="kpi-box"><div class="kpi-val">5</div><div class="kpi-lbl">برامج تشغيلية</div><div class="kpi-sub">رعاية | تأهيل | توعية</div></div>
-      <div class="kpi-box"><div class="kpi-val">14</div><div class="kpi-lbl">محافظة وأمانة</div><div class="kpi-sub">النطاق الجغرافي</div></div>
+    <div class="container">
+        <!-- Title Section -->
+        <section id="title" class="title-section">
+            <h1>تقرير تحليلي لمجلس الإدارة</h1>
+            <h2>كفاءة الأداء التشغيلي ومعدلات الإنفاق</h2>
+            <div class="info">الفترة: نوفمبر 2025 - أبريل 2026</div>
+            
+            <div class="info">التاريخ: 4 يونيو 2026</div>
+        </section>
+        
+        <!-- Introduction -->
+        <section id="introduction">
+            <h2>1. مقدمة وهدف التقرير</h2>
+            <ul class="bullet-list">
+                <li><strong>الهدف:</strong> تقديم تحليل شامل لمصروفات الجمعية (عمومية وإدارية، أنشطة وبرامج) للفترة المحددة.</li>
+                <li><strong>التركيز:</strong> تقييم كفاءة الأداء التشغيلي ومعدلات الإنفاق.</li>
+                <li><strong>الغاية:</strong> دعم مجلس الإدارة لاتخاذ قرارات مستنيرة وتحسين توجيه الموارد.</li>
+            </ul>
+        </section>
+        
+        <!-- Methodology -->
+        <section id="methodology">
+            <h2>2. ملخص المنهجية</h2>
+            <ul class="bullet-list">
+                <li><strong>مصدر البيانات:</strong> ملف Excel "المطور.xlsx".</li>
+                <li><strong>التحليل:</strong> استخدام Python لتنظيف البيانات، فلترتها، تجميع المصروفات، وحساب المؤشرات المالية والتشغيلية الرئيسية.</li>
+                <li><strong>الإخراج:</strong> رسوم بيانية توضيحية وجداول مقارنة.</li>
+            </ul>
+        </section>
+        
+        <!-- Financial Overview -->
+        <section id="financial-overview">
+            <h2>3. نظرة عامة على الأداء المالي الشهري</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>الشهر</th>
+                        <th>إجمالي المصروفات (ريال)</th>
+                        <th>إجمالي الإيرادات (ريال)</th>
+                        <th>صافي التدفق النقدي (ريال)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>نوفمبر 2025</td>
+                        <td>76,755.60</td>
+                        <td>250.00</td>
+                        <td class="negative">-76,505.60</td>
+                    </tr>
+                    <tr>
+                        <td>ديسمبر 2025</td>
+                        <td>307,254.53</td>
+                        <td>266,057.13</td>
+                        <td class="negative">-41,197.40</td>
+                    </tr>
+                    <tr>
+                        <td>يناير 2026</td>
+                        <td>217,393.14</td>
+                        <td>356,707.51</td>
+                        <td class="positive">139,314.37</td>
+                    </tr>
+                    <tr>
+                        <td>فبراير 2026</td>
+                        <td>425,270.10</td>
+                        <td>428,937.42</td>
+                        <td class="positive">3,667.32</td>
+                    </tr>
+                    <tr>
+                        <td>مارس 2026</td>
+                        <td>470,300.11</td>
+                        <td>984,274.80</td>
+                        <td class="positive">513,974.69</td>
+                    </tr>
+                    <tr>
+                        <td>أبريل 2026</td>
+                        <td>53,932.38</td>
+                        <td>34,436.80</td>
+                        <td class="negative">-19,495.58</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        
+        <!-- Revenue vs Expenses Chart -->
+        <section id="revenue-expenses">
+            <h2>4. تطور المصروفات والإيرادات الشهرية</h2>
+            <p>يوضح الرسم البياني التالي العلاقة بين إجمالي المصروفات والإيرادات على مدار الفترة المحددة، مع إظهار التباين في التدفقات النقدية الشهرية.</p>
+            <div class="chart-container">
+                <canvas id="revenueExpensesChart"></canvas>
+            </div>
+            <ul class="bullet-list">
+                <li>تباين ملحوظ في التدفقات النقدية الشهرية خلال فترة التقرير.</li>
+                <li>تحسن الأداء المالي بشكل كبير في الربع الأول من عام 2026، حيث تجاوزت الإيرادات المصروفات.</li>
+                <li>بلغ الفائض المالي ذروته في شهر مارس 2026، مما يعكس كفاءة عالية في التحصيل والتمويل.</li>
+            </ul>
+        </section>
+        
+        <!-- Expense Distribution -->
+        <section id="expense-distribution">
+            <h2>5. توزيع المصروفات حسب الفئة</h2>
+            <p>يبين الرسم البياني التالي توزيع المصروفات على الفئات الرئيسية (مصروفات عمومية وإدارية، مصروفات تشغيلية – برامج وأنشطة، مصروفات عقد التسويق، عمليات مالية ومصرفية) لكل شهر.</p>
+            <div class="chart-container">
+                <canvas id="expenseDistributionChart"></canvas>
+            </div>
+            <ul class="bullet-list">
+                <li>يوضح الرسم البياني تخصيص الموارد بين الفئات الرئيسية للجمعية.</li>
+                <li>يساعد في مراقبة التوازن بين التكاليف الإدارية والبرامجية بشكل شهري.</li>
+                <li>يظهر تنوعاً واضحاً في أوجه الإنفاق بما يخدم الأهداف التشغيلية خلال فترة الستة أشهر.</li>
+            </ul>
+        </section>
+        
+        <!-- Efficiency Indicators -->
+        <section id="efficiency">
+            <h2>6. مؤشرات الكفاءة التشغيلية</h2>
+            <p>تم حساب مؤشرين رئيسيين لتقييم الكفاءة التشغيلية:</p>
+            <ul class="bullet-list">
+                <li><strong>نسبة المصروفات الإدارية:</strong> تعكس كفاءة إدارة التكاليف غير المباشرة. المعيار المرجعي العالمي هو البقاء أقل من 25%.</li>
+                <li><strong>نسبة الإنفاق على البرامج:</strong> تشير إلى حجم الموارد الموجهة مباشرة لتحقيق أهداف الجمعية. الارتفاع هنا يعد مؤشراً إيجابياً.</li>
+            </ul>
+            <div class="chart-container">
+                <canvas id="efficiencyChart"></canvas>
+            </div>
+        </section>
+        
+        <!-- Operational Analysis -->
+        <section id="analysis">
+            <h2>7. تحليل الأداء التشغيلي</h2>
+            <div class="analysis-grid">
+                <div class="analysis-block">
+                    <span class="period">نوفمبر - ديسمبر 2025</span>
+                    <p>شهدت هذه الفترة <span class="highlight">ارتفاعاً حاداً</span> في المصروفات الإدارية (>97%) مقابل إنفاق ضئيل على البرامج. نتج عن ذلك تدفق نقدي سلبي يستوجب المراجعة.</p>
+                </div>
+                <div class="analysis-block">
+                    <span class="period">يناير - فبراير 2026</span>
+                    <p>تحول استراتيجي نحو <span class="highlight">الكفاءة العالية</span>؛ حيث انخفضت النسبة الإدارية لأقل من 6% وارتفع الإنفاق البرامجي لـ 93% مع تحقيق فائض نقدي.</p>
+                </div>
+                <div class="analysis-block">
+                    <span class="period">مارس 2026</span>
+                    <p>ذروة الأداء المالي؛ تحقيق <span class="highlight">أعلى صافي تدفق نقدي</span> (نصف مليون ريال) مع الحفاظ على توازن جيد في الإنفاق البرامجي بنسبة 67%.</p>
+                </div>
+                <div class="analysis-block">
+                    <span class="period">أبريل 2026</span>
+                    <p>تراجع نسبي في الكفاءة؛ حيث تقاربت المصروفات الإدارية (47%) مع البرامج (53%)، مما أدى لعودة التدفق النقدي السلبي المحدود.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Recommendations -->
+        <section id="recommendations">
+            <h2>8. التوصيات الرئيسية</h2>
+            <div class="recommendations-grid">
+                <div class="recommendation-card">
+                    <h4>مراجعة المصروفات الإدارية<span class="number">01</span></h4>
+                    <p>تحليل أسباب الارتفاع الحاد في نوفمبر وديسمبر 2025 وأبريل 2026 لضبط التكاليف غير المباشرة.</p>
+                </div>
+                <div class="recommendation-card">
+                    <h4>الحفاظ على كفاءة الإنفاق<span class="number">02</span></h4>
+                    <p>دراسة عوامل النجاح التشغيلي في يناير وفبراير 2026 وتعميمها كنموذج عمل مستدام.</p>
+                </div>
+                <div class="recommendation-card">
+                    <h4>تحسين التوازن المالي<span class="number">03</span></h4>
+                    <p>الالتزام بالمعيار المرجعي للمصروفات الإدارية (أقل من 25%) لضمان توجيه الموارد للبرامج.</p>
+                </div>
+                <div class="recommendation-card">
+                    <h4>مراقبة التدفقات النقدية<span class="number">04</span></h4>
+                    <p>تفعيل نظام إنذار مبكر للتدفقات النقدية السلبية لضمان الاستقرار المالي للجمعية.</p>
+                </div>
+                <div class="recommendation-card">
+                    <h4>تحليل استدامة الإيرادات<span class="number">05</span></h4>
+                    <p>إجراء دراسة مفصلة لمصادر الدخل لتقليل الاعتماد على التبرعات الموسمية وضمان الاستمرارية.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Conclusion -->
+        <section id="conclusion">
+            <h2>9. الخلاصة</h2>
+            <p style="font-size: 20px; line-height: 1.8; margin: 20px 0;">
+                إن المراقبة المستمرة والتحليل الدوري للبيانات المالية ليسا مجرد إجراءات تنظيمية، بل هما <span class="highlight">الركيزة الأساسية</span> لضمان كفاءة الأداء التشغيلي.
+            </p>
+            <p style="font-size: 20px; line-height: 1.8;">
+                من خلال تحسين نسب الإنفاق وتوجيه الموارد بفعالية نحو البرامج والأنشطة، ستتمكن الجمعية من تعزيز تأثيرها الميداني وتحقيق أهدافها الاستراتيجية بـ <span class="highlight">استدامة مالية</span> متينة.
+            </p>
+        </section>
+        
+        <!-- Footer -->
+        <footer>
+            <p><strong>تقرير تحليلي لمجلس الإدارة</strong></p>
+            <p>الفترة: نوفمبر 2025 - أبريل 2026</p>
+            <p>التاريخ: 4 يونيو 2026</p>
+            <p style="margin-top: 20px; border-top: 1px solid rgba(255,255,255,0.3); padding-top: 15px;">
+                جميع الحقوق محفوظة للمستشار: ابراهيم مهارش © 2026
+            </p>
+        </footer>
     </div>
-
-    <div class="two-col">
-      <div class="col-box">
-        <h3>الوضع الحالي والفرصة</h3>
-        <p>تعمل سندكم في قطاع يعاني شُحّاً واضحاً في الخدمات المتخصصة. الجمعية هي المؤسسة الوحيدة المتخصصة في هذه الفئة بمنطقة مكة المكرمة، مما يمنحها ميزة تنافسية استراتيجية فريدة.</p>
-        <p>إجمالي الإيرادات المسجَّلة: <strong>112,450 ريال (2024)</strong>. الجمعية في مرحلة البناء المؤسسي وتستهدف رفع قدرتها التمويلية وتأسيس وحدتها الاستثمارية 2025–2027.</p>
-      </div>
-      <div class="col-box accent">
-        <h3>الاحتياج التمويلي والأهداف</h3>
-        <p><strong>الاحتياج التمويلي التشغيلي السنوي:</strong> 800,000 – 1,200,000 ريال لتغطية البرامج الخمسة.</p>
-        <p><strong>هدف 2027:</strong> رفع التمويل الذاتي إلى 40% من الإيرادات، واستقطاب شراكات بقيمة تتجاوز 2 مليون ريال سنوياً.</p>
-        <p>فرص الشراكة: CSR، الصناديق الوقفية، المستثمرون الاجتماعيون، المنح الحكومية.</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ════════════════════════════════════════ SEC 2: IMPACT STORY ══ -->
-<div class="page">
-  <div class="section-header">
-    <div class="section-num">02</div>
-    <div><div class="section-title-ar">قصة الأثر</div><div class="section-title-en">Impact Story</div></div>
-  </div>
-  <div class="content">
-    <h2>المشكلة الاجتماعية: طفل في انتظار السند</h2>
-    <p>يُولد كل عام في المملكة العربية السعودية آلاف الأطفال مجهولي النسب، يواجهون منذ اللحظة الأولى تحديات قانونية واجتماعية ونفسية بالغة التعقيد. الأسرة الحاضنة تجد نفسها غالباً أمام فراغ مؤسسي حاد: لا توجيه نفسي متخصص، لا دعم اجتماعي مستمر، ولا مرجع مؤسسي يرافقها من أول يوم حتى يستقل الطفل بحياته.</p>
     
-    <h2>التحول الذي تصنعه سندكم</h2>
-    <div class="before-after">
-      <div class="before">
-        <div class="ba-title">❌ قبل سندكم</div>
-        <ul>
-          <li>أسرة حاضنة تواجه تحديات نفسية وقانونية وحيدة</li>
-          <li>غياب التوجيه المتخصص للطفل المحتضن</li>
-          <li>انعدام شبكة دعم مؤسسية فاعلة</li>
-          <li>تعثُّر في الاندماج الاجتماعي والتعليمي</li>
-          <li>انقطاع الدعم عند بلوغ الطفل</li>
-        </ul>
-      </div>
-      <div class="after">
-        <div class="ba-title">✅ مع سندكم</div>
-        <ul>
-          <li>رفقة مؤسسية من أول يوم حتى الاستقلال</li>
-          <li>برامج إرشاد نفسي متخصصة للطفل والأسرة</li>
-          <li>شبكة دعم مجتمعي وتطوعي فاعلة</li>
-          <li>تأهيل للطفل ليكون عضواً منتجاً</li>
-          <li>مسارات عمل وتوظيف لضمان المستقبل</li>
-        </ul>
-      </div>
-    </div>
-
-    <h2>الأثر الإنساني المتوقع</h2>
-    <p>كل طفل تدعمه سندكم هو استثمار في مواطن مُنتج سيُسهم لعقود قادمة في بناء المجتمع السعودي. الحسابات الاقتصادية للعائد الاجتماعي تُظهر أن كل ريال يُنفق على رعاية الطفولة المبكرة يولّد ما بين 7 و13 ريالاً من القيمة الاجتماعية عبر تقليل تكاليف الإجرام والبطالة ورفع الإنتاجية الاقتصادية.</p>
-  </div>
-</div>
-
-<!-- ════════════════════════════════════════ SEC 3: SOCIAL ANALYSIS ══ -->
-<div class="page">
-  <div class="section-header">
-    <div class="section-num">03</div>
-    <div><div class="section-title-ar">تحليل المشكلة الاجتماعية وحجم الاحتياج</div><div class="section-title-en">Social Problem Analysis</div></div>
-  </div>
-  <div class="content">
-    <div class="two-col">
-      <div class="col-box">
-        <h3>حجم الفئة المستهدفة</h3>
-        <p>في منطقة مكة المكرمة — المنطقة الأعلى كثافة سكانياً — تُقدَّر الأسر الحاضنة بالمئات، في حين لا تتجاوز الجهات المتخصصة عدداً محدوداً جداً.</p>
-        <p><strong>الفجوة واضحة: الطلب يفوق العرض المؤسسي بفارق كبير</strong>، مما يجعل توسع سندكم ضرورة استراتيجية لا خياراً.</p>
-      </div>
-      <div class="col-box navy">
-        <h3>التحديات الرئيسية</h3>
-        <ul>
-          <li>غياب السجل الإحصائي الوطني الشامل</li>
-          <li>ضعف البنية التحتية للدعم النفسي المتخصص</li>
-          <li>محدودية الوعي المجتمعي بقضايا الاحتضان</li>
-          <li>تعقيد الإجراءات القانونية والبيروقراطية</li>
-          <li>غياب مسارات التأهيل المهني للشباب المحتضَن</li>
-        </ul>
-      </div>
-    </div>
-
-    <h2>الفرص الاستراتيجية في البيئة الخارجية</h2>
-    <table>
-      <thead><tr><th>الفرصة</th><th>المحفّز</th><th>الإمكانية لسندكم</th></tr></thead>
-      <tbody>
-        <tr><td>رؤية 2030</td><td>تعزيز دور القطاع غير الربحي في التنمية</td><td>موازاة برامج الوزارة وصندوق الوقف</td></tr>
-        <tr><td>نمو قطاع المسؤولية الاجتماعية</td><td>تزايد ميزانيات CSR للشركات</td><td>استقطاب رعايات مؤسسية كبرى</td></tr>
-        <tr><td>التحول الرقمي</td><td>انتشار منصات التبرع الإلكترونية</td><td>بناء قناة تمويل رقمية مستدامة</td></tr>
-        <tr><td>الأوقاف الاستثمارية</td><td>نمو صناديق الوقف في السعودية</td><td>الحصول على دعم وقفي دائم</td></tr>
-        <tr><td>قانون الكيانات غير الربحية</td><td>بيئة تشريعية داعمة ومنظِّمة</td><td>رفع الجاهزية والامتثال المؤسسي</td></tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-
-<!-- ════════════════════════════════════════ SEC 4: BUSINESS MODEL ══ -->
-<div class="page">
-  <div class="section-header">
-    <div class="section-num">04</div>
-    <div><div class="section-title-ar">نموذج العمل والاستدامة المالية</div><div class="section-title-en">Business Model & Financial Sustainability</div></div>
-  </div>
-  <div class="content">
-    <h2>نموذج الإيرادات الحالي والمستهدف</h2>
-    <table>
-      <thead><tr><th>مصدر الإيراد</th><th>الوضع الحالي</th><th>المستهدف 2026</th><th>المستهدف 2027</th></tr></thead>
-      <tbody>
-        <tr><td>المنح والتبرعات الفردية</td><td>المصدر الأساسي</td><td>40%</td><td>30%</td></tr>
-        <tr><td>برامج المسؤولية الاجتماعية (CSR)</td><td>غير مُفعَّل</td><td>25%</td><td>25%</td></tr>
-        <tr><td>الدعم الحكومي والمنح الوزارية</td><td>محدود</td><td>15%</td><td>15%</td></tr>
-        <tr><td>الصناديق الوقفية والأوقاف</td><td>غير مُفعَّل</td><td>10%</td><td>15%</td></tr>
-        <tr><td>الاستثمار الاجتماعي (مشاريع)</td><td>غير مُفعَّل</td><td>5%</td><td>10%</td></tr>
-        <tr><td>مبادرات التمويل الجماعي</td><td>غير مُفعَّل</td><td>5%</td><td>5%</td></tr>
-      </tbody>
-    </table>
-
-    <h2>محاور الاستدامة المالية الثلاثة</h2>
-    <div class="partner-grid">
-      <div class="partner-card"><h4>المحور الأول<br>التمويل القصير الأمد</h4><p>استقطاب منح وتبرعات فورية لتغطية التكاليف التشغيلية وبناء احتياطي مالي.</p></div>
-      <div class="partner-card"><h4>المحور الثاني<br>الشراكات المؤسسية</h4><p>إبرام اتفاقيات متعددة السنوات مع شركات وصناديق لضمان تدفق تمويل مستقر.</p></div>
-      <div class="partner-card gold"><h4>المحور الثالث<br>الأصول الذاتية</h4><p>تأسيس وحدة استثمارية وبناء أصول (وقف + مشاريع) تولّد دخلاً ذاتياً مستداماً.</p></div>
-    </div>
-
-    <h2>الهيكل التمويلي المُقترح (ريال سعودي / سنوياً)</h2>
-    <table>
-      <thead><tr><th>البند</th><th>2025</th><th>2026</th><th>2027</th></tr></thead>
-      <tbody>
-        <tr><td><strong>الإيرادات المُستهدفة</strong></td><td>600,000</td><td>1,000,000</td><td>1,500,000</td></tr>
-        <tr><td>التكاليف التشغيلية</td><td>500,000</td><td>750,000</td><td>1,000,000</td></tr>
-        <tr><td>الاستثمار في البرامج</td><td>80,000</td><td>180,000</td><td>350,000</td></tr>
-        <tr><td>احتياطي الاستدامة</td><td>20,000</td><td>70,000</td><td>150,000</td></tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-
-<!-- ════════════════════════════════════════ SEC 5: IMPACT MEASUREMENT ══ -->
-<div class="page">
-  <div class="section-header">
-    <div class="section-num">05</div>
-    <div><div class="section-title-ar">قياس الأثر الاجتماعي</div><div class="section-title-en">Impact Measurement & KPIs</div></div>
-  </div>
-  <div class="content">
-    <h2>مؤشرات الأداء الرئيسية (KPIs)</h2>
-    <table>
-      <thead><tr><th>المؤشر</th><th>الوحدة</th><th>القيمة الحالية</th><th>المستهدف 2026</th><th>المستهدف 2027</th></tr></thead>
-      <tbody>
-        <tr><td>عدد الأسر المستفيدة</td><td>أسرة</td><td>+75</td><td>150</td><td>250</td></tr>
-        <tr><td>عدد الأطفال المحتضنين المُخدومين</td><td>طفل</td><td>+75</td><td>150</td><td>250</td></tr>
-        <tr><td>عدد الجلسات الإرشادية</td><td>جلسة/سنة</td><td>قيد الحصر</td><td>500</td><td>1,000</td></tr>
-        <tr><td>معدل رضا الأسر الحاضنة</td><td>%</td><td>قيد القياس</td><td>85%</td><td>90%</td></tr>
-        <tr><td>عدد البرامج التدريبية المُنجزة</td><td>برنامج/سنة</td><td>5</td><td>12</td><td>20</td></tr>
-        <tr><td>نسبة الأطفال المُدمجين مدرسياً</td><td>%</td><td>قيد القياس</td><td>95%</td><td>98%</td></tr>
-        <tr><td>عدد الشراكات المؤسسية الفاعلة</td><td>شراكة</td><td>8</td><td>20</td><td>35</td></tr>
-        <tr><td>نسبة التمويل الذاتي</td><td>%</td><td>0%</td><td>15%</td><td>40%</td></tr>
-      </tbody>
-    </table>
-
-    <h2>قياس العائد الاجتماعي — SROI</h2>
-    <div class="sroi-grid">
-      <div class="sroi-box"><div class="sroi-val">13x</div><div class="sroi-lbl">معامل العائد الاجتماعي المُقدَّر</div><div class="sroi-sub">مقابل كل ريال مستثمر</div></div>
-      <div class="sroi-box"><div class="sroi-val">60%</div><div class="sroi-lbl">تقليل احتمالية التعثر الاجتماعي</div><div class="sroi-sub">مقارنة بحالات بدون رعاية</div></div>
-      <div class="sroi-box"><div class="sroi-val">3x</div><div class="sroi-lbl">رفع إمكانية التوظيف المستقبلي</div><div class="sroi-sub">للأطفال المُؤهَّلين عبر البرامج</div></div>
-    </div>
-  </div>
-</div>
-
-<!-- ════════════════════════════════════════ SEC 6: INVESTMENT OPP ══ -->
-<div class="page">
-  <div class="section-header">
-    <div class="section-num">06</div>
-    <div><div class="section-title-ar">الفرص الاستثمارية</div><div class="section-title-en">Investment Opportunities</div></div>
-  </div>
-  <div class="content">
-    <p>تُقدّم سندكم للمستثمرين الاجتماعيين والمانحين فرصاً متعددة للمشاركة، من التمويل البرامجي المباشر إلى الاستثمار في بناء الأصول المؤسسية.</p>
-
-    <div class="opp-box">
-      <div class="opp-header gold">الفرصة الأولى: مركز سندكم للإرشاد الأسري المتخصص</div>
-      <div class="opp-body">
-        <table>
-          <tbody>
-            <tr><td><strong>فكرة المشروع</strong></td><td>تأسيس مركز متخصص لتقديم الإرشاد النفسي والاجتماعي للأسر الحاضنة</td></tr>
-            <tr><td><strong>حجم الاستثمار</strong></td><td>500,000 – 750,000 ريال سعودي</td></tr>
-            <tr><td><strong>نموذج العائد</strong></td><td>خدمة 200+ أسرة سنوياً | رسوم رمزية + منح تشغيلية</td></tr>
-            <tr><td><strong>الأثر الاجتماعي</strong></td><td>تقليل حالات إعادة الأطفال | رفع جودة حياة الأسر</td></tr>
-            <tr><td><strong>مدة الاسترداد</strong></td><td>18–24 شهراً للتعادل التشغيلي</td></tr>
-            <tr><td><strong>نموذج الشراكة</strong></td><td>راعٍ استراتيجي (تسمية المركز) | ممول مشروع | مانح برامجي</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <div class="opp-box">
-      <div class="opp-header teal">الفرصة الثانية: منصة سندكم الرقمية لإدارة حالات الاحتضان</div>
-      <div class="opp-body">
-        <table>
-          <tbody>
-            <tr><td><strong>فكرة المشروع</strong></td><td>تطوير منصة رقمية لإدارة الحالات ومتابعة الأطفال وربط الأسر بالمختصين</td></tr>
-            <tr><td><strong>حجم الاستثمار</strong></td><td>200,000 – 350,000 ريال سعودي</td></tr>
-            <tr><td><strong>نموذج العائد</strong></td><td>قاعدة بيانات وطنية | ترخيص النظام لجمعيات أخرى | دخل خدمات</td></tr>
-            <tr><td><strong>الأثر الاجتماعي</strong></td><td>متابعة 500+ حالة | تقارير أثر قابلة للقياس</td></tr>
-            <tr><td><strong>نموذج الشراكة</strong></td><td>استثمار تقني مشترك أو تمويل مؤسسي كامل مع حقوق تسمية</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <div class="opp-box">
-      <div class="opp-header navy">الفرصة الثالثة: وقف سندكم الاستثماري</div>
-      <div class="opp-body">
-        <table>
-          <tbody>
-            <tr><td><strong>فكرة المشروع</strong></td><td>صندوق وقفي يُغطي 30% من التكاليف التشغيلية للجمعية بصورة دائمة</td></tr>
-            <tr><td><strong>حجم الاستثمار الوقفي</strong></td><td>3,000,000 – 5,000,000 ريال (على مراحل)</td></tr>
-            <tr><td><strong>العائد الوقفي</strong></td><td>200,000 – 400,000 ريال سنوياً (عائد 6–8%)</td></tr>
-            <tr><td><strong>الأثر الاجتماعي</strong></td><td>استدامة مالية دائمة | استقلالية عن التبرعات المتقطعة</td></tr>
-            <tr><td><strong>نموذج الشراكة</strong></td><td>واقف مؤسسي أو فردي | حصص ابتداء من 50,000 ريال</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ════════════════════════════════════════ SEC 7: GOVERNANCE ══ -->
-<div class="page">
-  <div class="section-header">
-    <div class="section-num">07</div>
-    <div><div class="section-title-ar">الحوكمة والشفافية</div><div class="section-title-en">Governance & Transparency</div></div>
-  </div>
-  <div class="content">
-    <h2>الهيكل التنظيمي</h2>
-    <table>
-      <thead><tr><th>المستوى</th><th>الجهة</th><th>الدور</th><th>العضوية</th></tr></thead>
-      <tbody>
-        <tr><td>الحوكمة العليا</td><td><strong>مجلس الإدارة</strong></td><td>الإشراف الاستراتيجي والقرارات الكبرى</td><td>5 أعضاء (رئيس + نائب + 3 أعضاء)</td></tr>
-        <tr><td>الرقابة المالية</td><td><strong>لجنة المراجعة والتدقيق</strong></td><td>مراجعة القوائم المالية والامتثال</td><td>تابعة لمجلس الإدارة</td></tr>
-        <tr><td>الاستثمار</td><td><strong>لجنة الاستثمار</strong></td><td>دراسة الفرص وإدارة الأصول</td><td>تابعة لمجلس الإدارة</td></tr>
-        <tr><td>التنفيذ</td><td><strong>المدير التنفيذي</strong></td><td>الإدارة اليومية وتنفيذ الاستراتيجية</td><td>معيَّن من مجلس الإدارة</td></tr>
-        <tr><td>البرامج</td><td><strong>قسم خدمات المستفيدين</strong></td><td>تقديم البرامج الخمسة للفئة المستهدفة</td><td>فريق متخصص</td></tr>
-        <tr><td>الاستدامة</td><td><strong>قسم الاستدامة وتنمية الموارد</strong></td><td>استقطاب التمويل وبناء الشراكات</td><td>متخصصون ماليون</td></tr>
-      </tbody>
-    </table>
-
-    <div class="two-col">
-      <div class="col-box">
-        <h3>الامتثال التنظيمي</h3>
-        <ul>
-          <li>مرخَّصة من المركز الوطني لتنمية القطاع غير الربحي</li>
-          <li>تحت إشراف وزارة الموارد البشرية والتنمية الاجتماعية</li>
-          <li>ملتزمة بنظام الجمعيات والمؤسسات الأهلية</li>
-          <li>تقارير سنوية مرفوعة للجهات الرقابية</li>
-          <li>تدقيق مالي خارجي مستقل</li>
-        </ul>
-      </div>
-      <div class="col-box accent">
-        <h3>آليات الشفافية</h3>
-        <ul>
-          <li>نشر التقرير السنوي للعموم (تقرير 2024 متاح)</li>
-          <li>لوحة متابعة آنية للعمليات (قيد التطوير)</li>
-          <li>مصفوفة صلاحيات واضحة لكل مستوى</li>
-          <li>سياسة إفصاح للمانحين والشركاء</li>
-          <li>تقارير أثر ربع سنوية لأصحاب المصلحة</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ════════════════════════════════════════ SEC 8: PARTNERSHIPS ══ -->
-<div class="page">
-  <div class="section-header">
-    <div class="section-num">08</div>
-    <div><div class="section-title-ar">خارطة الشراكات والتمويل</div><div class="section-title-en">Partnerships & Funding Map</div></div>
-  </div>
-  <div class="content">
-    <h2>الشراكات القائمة <span class="badge">8 شركاء فاعلون</span></h2>
-    <table>
-      <thead><tr><th>الشريك</th><th>نوع الشراكة</th><th>القيمة المُضافة</th></tr></thead>
-      <tbody>
-        <tr><td>أمانة محافظة جدة</td><td>حكومية</td><td>دعم تنظيمي وتسهيل الإجراءات</td></tr>
-        <tr><td>جمعية الوداد لتعليم القيم</td><td>برامجية</td><td>البُعد التربوي والقيمي للأطفال</td></tr>
-        <tr><td>جمعية عطاء الخير للأيتام</td><td>قطاعية</td><td>تبادل الخبرات والتكامل في الخدمات</td></tr>
-        <tr><td>جمعية العلاج الآمن</td><td>صحية</td><td>الرعاية الصحية والنفسية للأطفال</td></tr>
-        <tr><td>الفضاء الرقمي العالمي</td><td>تقنية واستثمارية</td><td>التحول الرقمي ومنصات التمويل</td></tr>
-        <tr><td>الجمعية التعاونية متعددة الأغراض</td><td>خدمية</td><td>الخدمات اللوجستية والتشغيلية</td></tr>
-        <tr><td>دارناسة للدعاية والإعلام</td><td>تواصلية</td><td>الهوية المؤسسية والتسويق الاجتماعي</td></tr>
-        <tr><td>جمعية فلذات لرعاية الصحة</td><td>صحية</td><td>الرعاية الصحية المتخصصة للأطفال</td></tr>
-      </tbody>
-    </table>
-
-    <h2>استراتيجية الشراكات المُستهدفة</h2>
-    <table>
-      <thead><tr><th>فئة الشريك</th><th>نموذج التعاون</th><th>المُستهدف 2026</th></tr></thead>
-      <tbody>
-        <tr><td><strong>الجهات الحكومية</strong></td><td>مذكرات تفاهم + تفويض برامجي</td><td>وزارة الموارد + NCNP + التعليم</td></tr>
-        <tr><td><strong>الشركات (CSR)</strong></td><td>عقود رعاية سنوية / متعددة السنوات</td><td>10+ شركة بقيمة 500,000+ ريال</td></tr>
-        <tr><td><strong>الصناديق الوقفية</strong></td><td>إدراج في محافظ الأوقاف</td><td>3+ صناديق وقفية</td></tr>
-        <tr><td><strong>المستثمرون الاجتماعيون</strong></td><td>حصص شراكة في المشاريع</td><td>2+ مستثمر بنموذج هجين</td></tr>
-        <tr><td><strong>المانحون الدوليون</strong></td><td>تقديم طلبات المنح الدولية</td><td>UNICEF + مؤسسات خليجية</td></tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-
-<!-- ════════════════════════════════════════ SEC 9: ROADMAP ══ -->
-<div class="page">
-  <div class="section-header">
-    <div class="section-num">09</div>
-    <div><div class="section-title-ar">خارطة الطريق: التحول نحو الاستدامة</div><div class="section-title-en">3-Year Transformation Roadmap 2025–2027</div></div>
-  </div>
-  <div class="content">
-
-    <div class="roadmap-item">
-      <div class="rm-phase p1">
-        <div class="rm-phase-num">01</div>
-        <div class="rm-yr">2025</div>
-      </div>
-      <div class="rm-content">
-        <h3>بناء الأرضية الصلبة — Foundation Building</h3>
-        <ul>
-          <li>تأسيس الوحدة الاستثمارية ووضع هيكلها التنظيمي</li>
-          <li>المسح المالي الشامل وحصر الأصول الحالية</li>
-          <li>إطلاق استراتيجية علاقات المانحين والممولين</li>
-          <li>الحصول على أول منح مؤسسية (حكومية وخاصة)</li>
-          <li>بناء قاعدة البيانات وأنظمة القياس والمتابعة</li>
-        </ul>
-        <div class="rm-kpi">🎯 مؤشر النجاح: إيرادات 600,000+ ريال | 10 شراكات مُفعَّلة</div>
-      </div>
-    </div>
-
-    <div class="roadmap-item">
-      <div class="rm-phase p2">
-        <div class="rm-phase-num">02</div>
-        <div class="rm-yr">2026</div>
-      </div>
-      <div class="rm-content">
-        <h3>النمو المؤسسي والتوسع — Institutional Growth</h3>
-        <ul>
-          <li>إطلاق مركز الإرشاد الأسري المتخصص</li>
-          <li>إطلاق المنصة الرقمية لإدارة الحالات</li>
-          <li>توسيع النطاق الجغرافي لـ 14 محافظة بالكامل</li>
-          <li>استقطاب أول استثمار اجتماعي هجين</li>
-          <li>إطلاق برنامج الوقف التأسيسي (المرحلة الأولى)</li>
-        </ul>
-        <div class="rm-kpi">🎯 مؤشر النجاح: إيرادات 1,000,000+ ريال | 20 شراكة | تمويل ذاتي 15%</div>
-      </div>
-    </div>
-
-    <div class="roadmap-item">
-      <div class="rm-phase p3">
-        <div class="rm-phase-num">03</div>
-        <div class="rm-yr">2027</div>
-      </div>
-      <div class="rm-content">
-        <h3>الريادة والأثر الممتد — Leadership & Scale</h3>
-        <ul>
-          <li>تحقيق التعادل المالي والاستدامة التشغيلية الكاملة</li>
-          <li>الوقف الاستثماري يُغطي 30% من التكاليف السنوية</li>
-          <li>تصدير نموذج سندكم لمناطق أخرى بالمملكة</li>
-          <li>إطلاق برنامج وطني للتأهيل المهني للشباب المحتضَن</li>
-          <li>الحصول على اعتماد دولي لمعايير الجودة والأثر</li>
-        </ul>
-        <div class="rm-kpi">🎯 مؤشر النجاح: إيرادات 1,500,000+ ريال | تمويل ذاتي 40% | نموذج قابل للنسخ وطنياً</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ════════════════════════════════════════ SEC 10: VISION 2030 ══ -->
-<div class="page">
-  <div class="section-header">
-    <div class="section-num">10</div>
-    <div><div class="section-title-ar">التوافق مع رؤية المملكة 2030</div><div class="section-title-en">Vision 2030 Alignment</div></div>
-  </div>
-  <div class="content">
-    <p>تُجسّد جمعية سندكم توافقاً عميقاً مع مستهدفات رؤية المملكة 2030 في ركائزها الثلاث: المجتمع الحيوي، الاقتصاد المزدهر، والوطن الطموح. هذا التوافق يمنحها مكانة استثمارية مُميَّزة لدى الجهات الحكومية وصناديق الدعم الوطنية.</p>
-    <table>
-      <thead><tr><th>مستهدف رؤية 2030</th><th>إسهام سندكم</th><th>مؤشر القياس</th></tr></thead>
-      <tbody>
-        <tr><td>رفع مساهمة القطاع غير الربحي في GDP إلى 5%</td><td>نموذج مؤسسي ناضج يرفع كفاءة القطاع</td><td>حجم الإيرادات المُدارة وكفاءة الإنفاق</td></tr>
-        <tr><td>رفع مؤشر جودة الحياة</td><td>تحسين حياة الأطفال المحتضنين وأسرهم</td><td>معدل رضا المستفيدين ومخرجات البرامج</td></tr>
-        <tr><td>تمكين الشباب وتأهيلهم لسوق العمل</td><td>برامج تأهيل مهني للشباب المحتضن</td><td>نسبة توظيف خريجي البرامج</td></tr>
-        <tr><td>تعزيز الهوية الوطنية والانتماء</td><td>بناء مواطنين منتجين من فئة هشّة</td><td>معدل الاندماج الاجتماعي والتعليمي</td></tr>
-        <tr><td>تطوير القطاع غير الربحي ورفع جاهزيته</td><td>نموذج حوكمة وقياس أثر قابل للنسخ وطنياً</td><td>جاهزية الامتثال والتقارير المؤسسية</td></tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-
-<!-- ════════════════════════════════════════ SEC 11: CTA ══ -->
-<div class="page">
-  <div class="section-header">
-    <div class="section-num">11</div>
-    <div><div class="section-title-ar">دعوة للشراكة والاستثمار</div><div class="section-title-en">Call to Action</div></div>
-  </div>
-  <div class="content">
-    <div class="cta-box">
-      <div class="cta-title">معاً نصنع الأثر</div>
-      <div class="cta-sub">جمعية سندكم ليست مجرد مؤسسة خيرية — بل هي استثمار استراتيجي في الإنسان السعودي.<br>كل ريال تستثمره اليوم في طفل محتضن هو استثمار في مواطن منتج وعائلة مستقرة ومجتمع متماسك.</div>
-    </div>
-
-    <h2>خيارات الشراكة والمساهمة</h2>
-    <table>
-      <thead><tr><th>نوع المساهمة</th><th>الحجم المُقترح</th><th>المخرجات</th><th>النموذج</th></tr></thead>
-      <tbody>
-        <tr><td><strong>راعٍ استراتيجي للجمعية</strong></td><td>500,000+ ريال/سنة</td><td>تسمية المقر + حضور فعاليات + تقارير حصرية</td><td>CSR / استثمار اجتماعي</td></tr>
-        <tr><td><strong>ممول برنامج متكامل</strong></td><td>150,000–300,000 ريال</td><td>ملكية برنامج + قياس أثر مخصص</td><td>منحة / CSR</td></tr>
-        <tr><td><strong>مانح مشاريع التطوير</strong></td><td>200,000–500,000 ريال</td><td>تمويل مشروع الإرشاد أو المنصة الرقمية</td><td>استثمار اجتماعي هجين</td></tr>
-        <tr><td><strong>واقف في صندوق سندكم</strong></td><td>50,000+ ريال (دائم)</td><td>عائد وقفي أبدي | لوح تكريم الواقفين</td><td>وقف خيري</td></tr>
-        <tr><td><strong>شريك برامجي مؤسسي</strong></td><td>خدمات / موارد بشرية</td><td>تعاون تشغيلي + تقارير مشتركة</td><td>شراكة استراتيجية</td></tr>
-      </tbody>
-    </table>
-
-    <h2>معلومات التواصل</h2>
-    <div class="contact-grid">
-      <div class="contact-card teal">
-        <div class="contact-card-name">جمعية سندكم</div>
-        <div class="contact-item">📧 <a href="mailto:support@sanadcom.org.sa">support@sanadcom.org.sa</a></div>
-        <div class="contact-item">📞 +966 053 497 3063</div>
-        <div class="contact-item">🌐 <a href="https://sanadcom.org.sa">sanadcom.org.sa</a></div>
-        <div class="contact-item">📱 @sanadcomm1</div>
-        <div class="contact-item" style="margin-top:12px;font-size:12px;color:#888;">مصرف الراجحي<br>حساب: 525608010522569<br>IBAN: SA9580000525608010522569</div>
-      </div>
-      <div class="contact-card navy">
-        <div class="contact-card-name">ARKAN Sustainable Investment<br><span style="font-size:14px;">أركان الاستدامة للاستثمار</span></div>
-        <div class="contact-item">📧 <a href="mailto:ceo@spi.sa">ceo@spi.sa</a></div>
-        <div class="contact-item">📞 +966 0500 90 10 60</div>
-        <div class="contact-item">📍 الرياض – مركز الملك عبدالله المالي</div>
-        <div class="contact-item" style="margin-top:12px;font-size:12px;color:#888;">سجل تجاري: 1009059968<br>المنطقة الرابعة</div>
-      </div>
-    </div>
-
-    <footer-note>هذا الملف أُعدَّ بمستوى استشاري من قِبل أركان الاستدامة للاستثمار لصالح جمعية سندكم — سري وخاص للاستخدام الرسمي فقط — 2025</footer-note>
-  </div>
-</div>
-
-</div><!-- /wrapper -->
+    <script>
+        // Revenue vs Expenses Chart
+        const ctx1 = document.getElementById('revenueExpensesChart').getContext('2d');
+        new Chart(ctx1, {
+            type: 'line',
+            data: {
+                labels: ['نوفمبر 2025', 'ديسمبر 2025', 'يناير 2026', 'فبراير 2026', 'مارس 2026', 'أبريل 2026'],
+                datasets: [{
+                    label: 'إجمالي المصروفات',
+                    data: [76755.60, 307254.53, 217393.14, 425270.10, 470300.11, 53932.38],
+                    borderColor: '#D97706',
+                    backgroundColor: 'rgba(217, 119, 6, 0.1)',
+                    borderWidth: 3,
+                    tension: 0.3,
+                    fill: true,
+                    pointRadius: 6,
+                    pointBackgroundColor: '#D97706'
+                }, {
+                    label: 'إجمالي الإيرادات',
+                    data: [250.00, 266057.13, 356707.51, 428937.42, 984274.80, 34436.80],
+                    borderColor: '#10B981',
+                    backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                    borderWidth: 3,
+                    tension: 0.3,
+                    fill: true,
+                    pointRadius: 6,
+                    pointBackgroundColor: '#10B981'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            font: { family: 'Space Grotesk', size: 14, weight: '800' },
+                            padding: 15
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            font: { family: 'Space Grotesk', size: 12 },
+                            callback: function(value) { return value.toLocaleString('ar-SA') + ' ريال'; }
+                        }
+                    },
+                    x: {
+                        ticks: { font: { family: 'Space Grotesk', size: 12 } }
+                    }
+                }
+            }
+        });
+        
+        // Expense Distribution Chart
+        const ctx2 = document.getElementById('expenseDistributionChart').getContext('2d');
+        new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: ['نوفمبر 2025', 'ديسمبر 2025', 'يناير 2026', 'فبراير 2026', 'مارس 2026', 'أبريل 2026'],
+                datasets: [
+                    {
+                        label: 'مصروفات عمومية وإدارية',
+                        data: [74928.25, 305790.00, 13586.00, 23155.37, 153386.00, 25320.26],
+                        backgroundColor: '#D97706'
+                    },
+                    {
+                        label: 'مصروفات تشغيلية – برامج وأنشطة',
+                        data: [1817.00, 1437.50, 33988.00, 2114.15, 27252.77, 28607.50],
+                        backgroundColor: '#10B981'
+                    },
+                    {
+                        label: 'مصروفات عقد التسويق',
+                        data: [0.00, 0.00, 169809.94, 400000.00, 289643.50, 0.00],
+                        backgroundColor: '#0EA5E9'
+                    },
+                    {
+                        label: 'عمليات مالية ومصرفية',
+                        data: [10.35, 27.03, 9.20, 0.58, 17.84, 4.62],
+                        backgroundColor: '#8B5CF6'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            font: { family: 'Space Grotesk', size: 12, weight: '800' },
+                            padding: 15
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        stacked: true,
+                        ticks: { font: { family: 'Space Grotesk', size: 12 } }
+                    },
+                    y: {
+                        stacked: true,
+                        ticks: {
+                            font: { family: 'Space Grotesk', size: 12 },
+                            callback: function(value) { return value.toLocaleString('ar-SA') + ' ريال'; }
+                        }
+                    }
+                }
+            }
+        });
+        
+        // Efficiency Indicators Chart
+        const ctx3 = document.getElementById('efficiencyChart').getContext('2d');
+        new Chart(ctx3, {
+            type: 'line',
+            data: {
+                labels: ['نوفمبر 2025', 'ديسمبر 2025', 'يناير 2026', 'فبراير 2026', 'مارس 2026', 'أبريل 2026'],
+                datasets: [
+                    {
+                        label: 'نسبة المصروفات الإدارية %',
+                        data: [97.62, 99.52, 6.25, 5.44, 32.61, 46.95],
+                        borderColor: '#D97706',
+                        backgroundColor: 'rgba(217, 119, 6, 0.1)',
+                        borderWidth: 3,
+                        tension: 0.3,
+                        fill: true,
+                        pointRadius: 6,
+                        pointBackgroundColor: '#D97706'
+                    },
+                    {
+                        label: 'نسبة الإنفاق على البرامج %',
+                        data: [2.37, 0.47, 93.75, 94.55, 67.38, 53.04],
+                        borderColor: '#10B981',
+                        backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                        borderWidth: 3,
+                        tension: 0.3,
+                        fill: true,
+                        pointRadius: 6,
+                        pointBackgroundColor: '#10B981'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            font: { family: 'Space Grotesk', size: 12, weight: '800' },
+                            padding: 15
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        ticks: {
+                            callback: function(value) { return value + '%'; },
+                            font: { family: 'Space Grotesk', size: 12 }
+                        }
+                    },
+                    x: {
+                        ticks: { font: { family: 'Space Grotesk', size: 12 } }
+                    }
+                }
+            }
+        });
+    </script>
 </body>
 </html>
